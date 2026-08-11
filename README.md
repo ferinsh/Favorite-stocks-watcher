@@ -1,17 +1,74 @@
-# DevProjects - Favorite stocks watcher
+# StockWatch
 
-This is an open source project from [DevProjects](http://www.codementor.io/projects). Feedback and questions are welcome!
-Find the project requirements here: [Favorite stocks watcher](https://www.codementor.io/projects/web/favorite-stocks-watcher-b0wexig802)
+A full-stack stock portfolio monitoring application built with React, Django REST Framework, PostgreSQL, and Docker.
 
-## Tech/framework used
-Built with ___
+Users can create accounts, manage favorite stocks, view current market prices, and share their portfolios with other users.
 
-## Screenshots and demo
-Screenshots of your app and/or a link to your live demo
+## Features
 
-## Installation
-Instructions for other developers on how to install and run your code on their local environment.
+- User registration and login
+- JWT authentication
+- Protected routes
+- User profile information
+- Add and remove favorite stocks
+- Current stock prices through Finnhub
+- Automatic price refresh every minute
+- PostgreSQL persistence
+- Share portfolios with other users
+- Read-only shared portfolios
+- Dockerized development environment
+- React frontend
+- Django REST API
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+## Tech Stack
 
+### Frontend
+
+- React
+- Vite
+- React Router
+- Axios
+
+### Backend
+
+- Python
+- Django
+- Django REST Framework
+- Simple JWT
+
+### Database
+
+- PostgreSQL
+
+### External API
+
+- Finnhub
+
+### Infrastructure
+
+- Docker
+- Docker Compose
+
+## Project Structure
+
+```text
+stock-portfolio/
+├── backend/
+│   ├── accounts/
+│   ├── portfolios/
+│   ├── stocks/
+│   ├── config/
+│   ├── manage.py
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── .env.example
+│
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   ├── Dockerfile
+│   └── .dockerignore
+│
+├── docker-compose.yml
+├── .gitignore
+└── README.md

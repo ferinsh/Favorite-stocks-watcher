@@ -263,3 +263,117 @@ input {
     color: #6b7280;
     margin-bottom: 24px;
 }
+
+.add-stock-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.add-stock-form input {
+    flex: 1;
+    max-width: 300px;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+}
+
+.stock-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stock-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+.stock-row strong {
+    font-size: 18px;
+}
+
+.delete-button {
+    padding: 8px 12px;
+
+    background: white;
+    border: 1px solid #ef4444;
+    color: #dc2626;
+
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background: #fee2e2;
+}
+
+.stock-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+}
+
+.stock-info strong {
+    font-size: 17px;
+}
+
+.stock-info span {
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.stock-price {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.stock-change {
+    min-width: 80px;
+    color: #374151;
+}
+
+.stock-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.stock-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stock-table th {
+    text-align: left;
+    padding: 14px 16px;
+    background: #f9fafb;
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.stock-table td {
+    padding: 16px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.stock-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.positive {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.negative {
+    color: #dc2626;
+    font-weight: 600;
+}

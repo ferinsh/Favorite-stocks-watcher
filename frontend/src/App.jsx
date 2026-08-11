@@ -4,6 +4,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Favorites from "./pages/Favorites";
+import SharePortfolio from "./pages/SharePortfolio";
+import SharedPortfolios from "./pages/SharedPortfolios";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -21,6 +23,14 @@ function App() {
                     <Route
                       path="/favorites"
                       element={<Favorites />}
+                    />
+                    <Route
+                      path="/share"
+                      element={<SharePortfolio />}
+                    />
+                    <Route
+                      path="/shared"
+                      element={<SharedPortfolios />}
                     />
                 </Route>
 

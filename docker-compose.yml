@@ -3,14 +3,61 @@ services:
     image: postgres:16
     container_name: stock_portfolio_db
     restart: unless-stopped
+
     environment:
       POSTGRES_DB: stock_portfolio
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+
     ports:
       - "5432:5432"
+
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d stock_portfolio"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+
+    container_name: stock_portfolio_backend
+    restart: unless-stopped
+
+    env_file:
+      - ./backend/.env
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+
+    container_name: stock_portfolio_frontend
+    restart: unless-stopped
+
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend
+
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
 
 volumes:
   postgres_data:

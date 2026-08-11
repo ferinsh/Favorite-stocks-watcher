@@ -1,8 +1,45 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import Header from "../components/Header";
+import StockTable from "../components/StockTable";
+
 import { useAuth } from "../context/AuthContext";
 
+import {
+    getFavoriteStockQuotes,
+} from "../services/portfolio";
+
 function Dashboard() {
-    const { user } = useAuth();
+    const { user, accessToken } = useAuth();
+
+    const [stocks, setStocks] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const loadStocks = async () => {
+        try {
+            const data = await getFavoriteStockQuotes();
+            setStocks(data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (!accessToken) {
+            return;
+        }
+
+        loadStocks();
+
+        const interval = setInterval(() => {
+            loadStocks();
+        }, 60 * 1000);
+
+        return () => clearInterval(interval);
+    }, [accessToken]);
 
     return (
         <div className="app">
@@ -10,28 +47,40 @@ function Dashboard() {
 
             <main className="dashboard">
                 <div className="dashboard-heading">
-                    <div>
-                        <h1>Dashboard</h1>
-                        <p>
-                            Welcome back, {user?.first_name || user?.username}.
-                            Here's what's happening with your stocks.
-                        </p>
-                    </div>
+                    <h1>Dashboard</h1>
+
+                    <p>
+                        Welcome back,{" "}
+                        {user?.first_name || user?.username}.
+                    </p>
                 </div>
 
-                <section className="dashboard-content">
-                    <div className="empty-state">
-                        <h2>Your portfolio is empty</h2>
+                <section className="stock-section">
+                    <div className="section-header">
+                        <div>
+                            <h2>Your Portfolio</h2>
 
-                        <p>
-                            Add your favorite stocks to start monitoring
-                            their prices.
-                        </p>
+                            <p>
+                                Your favorite stocks and their
+                                current prices.
+                            </p>
+                        </div>
 
-                        <a href="/favorites" className="primary-button">
-                            Add Your First Stock
-                        </a>
+                        <Link
+                            to="/favorites"
+                            className="primary-button"
+                        >
+                            Manage Stocks
+                        </Link>
                     </div>
+
+                    {loading ? (
+                        <div className="empty-state">
+                            Loading your portfolio...
+                        </div>
+                    ) : (
+                        <StockTable stocks={stocks} />
+                    )}
                 </section>
             </main>
         </div>

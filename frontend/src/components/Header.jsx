@@ -20,7 +20,10 @@ function Header() {
                 <nav className="navigation">
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/favorites">My Stocks</Link>
+                    <Link to="/share">Share</Link>
+                    <Link to="/shared">Shared With Me</Link>
                 </nav>
+                
             </div>
 
             <div className="user-section">

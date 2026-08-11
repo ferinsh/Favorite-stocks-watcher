@@ -1,6 +1,7 @@
 # Python
 __pycache__/
 *.py[cod]
+*.pyo
 
 # Django
 *.log
@@ -17,8 +18,9 @@ backend/venv/
 frontend/node_modules/
 frontend/dist/
 
-# VS Code
+# IDE
 .vscode/
+.idea/
 
 # OS
 .DS_Store
